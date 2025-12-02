@@ -23,7 +23,7 @@ public class UserBean {
 
 
     public List<UserDto> findAllUsers() {
-        LOG.info("findAllCars");
+        LOG.info("findAllUsers");
         try {
 
             TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u", User.class);
@@ -33,6 +33,7 @@ public class UserBean {
             throw new EJBException(ex);
         }
     }
+
     private List<UserDto> copyUserToDto(List<User> users) {
         List<UserDto> userDtos = new ArrayList<>();
 

@@ -21,10 +21,8 @@ public class Users extends HttpServlet {
 
         List<UserDto> users = userBean.findAllUsers();
 
-        // trimitem lista către JSP
         request.setAttribute("users", users);
 
-        // forward către pagina users.jsp
         request.getRequestDispatcher("WEB-INF/pages/users.jsp").forward(request, response);
     }
 
