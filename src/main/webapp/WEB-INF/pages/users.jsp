@@ -4,11 +4,18 @@
 
 <t:pageTemplate pageTitle="Users">
     <h1>Users</h1>
+    <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+        <a href="${pageContext.request.contextPath}/AddUser"
+           class="btn btn-primary btn-lg">
+            Add User
+        </a>
+    </c:if>
     <div class="container text-center">
         <div class="row fw-bold">
             <div class="col">Email</div>
             <div class="col">Name</div>
         </div>
+
         <c:forEach var="user" items="${users}">
             <div class="row">
                 <div class="col">${user.email}</div>
