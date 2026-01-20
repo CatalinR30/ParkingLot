@@ -1,3 +1,4 @@
+
 package com.parking.parkinglot.ejb;
 
 import com.parking.parkinglot.common.UserDto;
@@ -45,8 +46,8 @@ public class UserBean {
 
         for (User user : users) {
             UserDto dto = new UserDto(
-                    user.getId(),
                     user.getUsername(),
+                    user.getId(),
                     user.getEmail()
             );
             userDtos.add(dto);
@@ -82,5 +83,14 @@ public class UserBean {
             userGroup.setUserGroup(group);
             entityManager.persist(userGroup);
         }
+
+    }
+    public Collection<String> findUsernamesByUserIds(Collection<Long> userIds) {
+        LOG.info("findUsernamesByUserIds");
+        List<String> usernames =
+                entityManager.createQuery("SELECT u.username FROM User u WHERE u.id IN :userIds", String.class)
+                        .setParameter("userIds", userIds)
+                        .getResultList();
+        return usernames;
     }
 }
